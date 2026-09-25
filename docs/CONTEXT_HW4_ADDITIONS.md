@@ -1,68 +1,19 @@
 # HW4 Additions for Your Context Files
 
-You copied your HW3 context files over the template's. Good. The template's
-versions carried a few HW4 skeletons; here they are, to paste into yours.
+This is reference material from the template, kept here in case it is useful to compare against. The actual context/ARCHITECTURE.md, context/FEATURES.md, context/STANDARDS.md, and context/CLAUDE.md in this repository already have these additions applied, adapted to the evidence-log feature rather than the template's generic "entries" example.
 
-## ARCHITECTURE.md: paste above ADR-001
+## ARCHITECTURE.md: pasted above ADR-001
 
-```markdown
-## The Gate: HW4 rerun
+The Gate rerun table and ADR-002 are already in context/ARCHITECTURE.md, above ADR-001. ADR-001's status line reads `Superseded by ADR-002`; nothing else in it was edited.
 
-Where should entries live now that they must survive a cleared cache?
+## FEATURES.md: added to the Verification table
 
-| Criterion | Weight | Build (Worker + D1) | Buy (hosted BaaS) | Delegate (AI builder hosts it) |
-|---|---|---|---|---|
-| Cost to start | | | | |
-| Cost to maintain | | | | |
-| Time to working | | | | |
-| Inspectability | | | | |
-| Switching cost | | *scored from Session B experience* | | |
-| Fit to spec | | | | |
-| **Weighted total** | | | | |
-
-## ADR-002: Entries move from localStorage to Cloudflare D1
-
-**Status:** Proposed
-**Supersedes:** ADR-001
-
-### Context
-What data leaves the browser, to which vendor, under what terms, and who is accountable.
-
-### Decision
-
-### Alternatives considered
-
-### Consequences
-At least one thing that got harder.
-
-### Revisit trigger
-```
-
-Then change ADR-001's status line to `**Status:** Superseded by ADR-002` and
-edit nothing else in it.
-
-## FEATURES.md: add to the Verification table
-
-| Statement | HW3 verdict | HW4 verdict | Reason |
-|---|---|---|---|
-| Survive cleared cache | CANNOT TEST YET | | now testable |
-| Server unreachable | | | how would you simulate an outage? |
-| Server returns 500 | | | |
-| Server returns 400 | | | |
-| Second client writes to the same table | | | DEFERRED if ADR-002 says so |
-
-And one EARS unwanted-behavior statement for the validation rule you add to
-`worker.js`: `IF ..., THEN THE SYSTEM SHALL reject it and say why.`
+The new HW4 Verification rows (survive cleared cache, server unreachable, server returns 400, server returns 500, second client writes to the same table) are already in context/FEATURES.md, along with the new EARS statement (AC-8) for the evidence-length validation rule added to worker.js.
 
 ## STANDARDS.md: three new rules
 
-- User values reach SQL through `bind()`, never string concatenation.
-- No credential in the repository. Database ids are addresses and may appear in `wrangler.toml`.
-- A failed request is shown to the user on the page and is never thrown in the console.
+Already added as rules 7 through 9 in context/STANDARDS.md: no string-concatenated SQL, no credential in the repository, and failed requests shown on the page rather than thrown to the console.
 
-## CLAUDE.md: restate them for the agent
+## CLAUDE.md: restated for the agent
 
-- Never build SQL by concatenating strings. Use `prepare(...).bind(...)`.
-- Never write a credential, token, or key into any file in this repository.
-- Never add a dependency without adding a row to TOOLS.md.
-- Handle failed responses on the page. Never throw to the console.
+Already restated in context/CLAUDE.md's Rules section.

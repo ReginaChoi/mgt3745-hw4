@@ -1,40 +1,39 @@
 ---
-# Tokens: what a machine reads. Replace every value with one pulled from the
-# interface you admire. Guess the hex; precision is HW5's problem.
-color-primary: "#051E39"
-color-accent: "#B39051"
-color-background: "#FFFFFF"
-color-text: "#1A1A1A"
-font-body: "Roboto"
-font-heading: "Roboto Slab"
-font-size-min: 14px
-space-unit: 8px
-radius: 4px
+# Tokens: what a machine reads. These are the actual values already in
+# styles.css, not new ones invented for this file.
+color-text: "#172b40"
+color-background: "#f7f9fb"
+color-primary: "#123552"
+color-error: "#922020"
+color-focus: "#b16d00"
+font-body: "Arial, Helvetica, sans-serif"
+space-unit: "0.75rem"
+radius: "0.3rem"
 ---
 
 # STYLE.md
 
-Tokens above, rationale below. The frontmatter is what a machine reads; this
-body is what a human reads. One sentence per token. "Looks clean" is fog;
-"gold fails contrast on white at body size" is at altitude.
+Status: present in Module 4, graded for rigor starting Module 5. Tokens above, rationale below.
 
 ## Rationale
 
-- **color-primary**: *why this color, for this audience*
-- **color-accent**: *where it is allowed and where it is not*
-- **font-body / font-heading**: *one family per role, because two is a decision and three is a mess*
-- **space-unit**: *so nothing is eyeballed*
-- **font-size-min**: *who cannot read anything smaller*
+- **color-text (#172b40):** A dark navy instead of pure black. This is a tool a student uses to log something serious about their own career prospects; a slightly softened dark tone reads as calmer than flat black without losing contrast against the light background.
+- **color-background (#f7f9fb):** Near-white rather than pure white. A student re-reading their own evidence entries is doing close reading, not looking at a marketing page, and a slightly warmer white is easier on the eyes for that.
+- **color-primary (#123552):** The same dark blue family as the text color, used for the Save button. One accent color instead of a second unrelated one keeps the page from looking like it's trying to sell something, which matters since this is meant to feel closer to a personal record than a product.
+- **color-error (#922020):** A clear red, used only for the error text under the evidence form. It needs to be immediately distinguishable from the blue used everywhere else, since AC-3 and AC-4 depend on the student actually noticing the error.
+- **color-focus (#b16d00):** An amber focus outline, chosen because it's visible against both the blue buttons and the white background, and it doesn't collide with the error red, so a keyboard user can tell "this is focused" apart from "this is wrong."
+- **font-body (Arial, Helvetica, sans-serif):** A plain system sans-serif rather than a downloaded web font. This is a form a student fills out under some stress about their own job prospects; it did not seem worth adding a network dependency (and one more row in TOOLS.md) just to look more designed.
+- **space-unit (0.75rem):** Used for button and input padding so touch targets stay comfortably tappable without me hand-tuning every element separately.
+- **radius (0.3rem):** A small, consistent rounding on inputs and buttons, just enough to feel less like a raw browser form without looking playful.
 
 ## Refusals
 
-Things this interface will never do, and why. Taken from the interface you
-resent. Name the Law of UX it breaks (lawsofux.com).
+Things this interface will never do, and why.
 
-1. *No modals for anything the user did not ask for. Breaks: ...*
-2. *...*
+1. **No modal dialogs for anything the student did not ask for.** No "are you sure you want to leave," no upsell popup, nothing that interrupts a student who is already dealing with enough uncertainty about their career. This breaks the pattern a lot of SaaS tools default to (interrupting the user "for their own good"), and it violates the Aesthetic-Usability Effect's cousin problem: an interruption doesn't become acceptable just because it's well-designed.
+2. **No autosaving that hides whether a save actually worked.** Every save either clearly succeeds (status message, skill flips to Evidenced) or clearly fails (error message, text preserved). I resent tools that autosave silently and then you find out days later something didn't stick; this violates the Visibility of System Status law on purpose, in the tool's favor, by never letting "probably saved" stand in for "confirmed saved."
 
 ## Sources
 
-- Admired: *name, screenshot in /docs*
-- Resented: *name, screenshot in /docs*
+- Admired: a plain government tax-filing form page, the kind with almost no visual design at all, just clear labels and one action per screen. No screenshot on hand; described from memory of using one.
+- Resented: a job-application portal that used a spinning modal and a fake progress bar every time I saved a draft, making a two-second save feel like it was doing something dramatic. No screenshot on hand; described from memory of using one.

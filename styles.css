@@ -1,63 +1,56 @@
-/* styles.css
-   Presentation only. The tokens below should match context/STYLE.md;
-   when you change one, change both. */
-:root {
-  --color-primary: #051E39;
-  --color-accent: #B39051;
-  --color-background: #FFFFFF;
-  --color-text: #1A1A1A;
-  --color-error: #9B2C2C;
-  --font-body: Roboto, Arial, sans-serif;
-  --font-heading: "Roboto Slab", Georgia, serif;
-  --space-unit: 8px;
-  --radius: 4px;
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  font-family: var(--font-body);
-  font-size: 16px;
-  color: var(--color-text);
-  background: var(--color-background);
-}
-main {
-  max-width: 640px;
-  margin: 0 auto;
-  padding: calc(var(--space-unit) * 4) calc(var(--space-unit) * 2);
-}
-h1 {
-  font-family: var(--font-heading);
-  color: var(--color-primary);
-  margin: 0 0 var(--space-unit) 0;
-}
-.lede { color: #555; margin: 0 0 calc(var(--space-unit) * 3) 0; }
-form { display: flex; flex-wrap: wrap; gap: var(--space-unit); align-items: end; }
-label { flex-basis: 100%; font-weight: bold; }
+:root { font-family: Arial, Helvetica, sans-serif; color: #172b40; background: #f7f9fb; }
+body { margin: 0; }
+main { max-width: 44rem; margin: 2rem auto; padding: 0 1.25rem; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.25rem; margin-top: 2rem; }
+p { line-height: 1.5; }
+label { display: block; font-weight: 700; margin-top: 1rem; }
+
+select,
 input {
-  flex: 1;
-  min-width: 200px;
-  padding: var(--space-unit);
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
   font: inherit;
-  border: 1px solid #BBB;
-  border-radius: var(--radius);
+  padding: 0.8rem;
+  border: 1px solid #526578;
+  border-radius: 0.3rem;
 }
+
 button {
-  padding: var(--space-unit) calc(var(--space-unit) * 2);
+  min-height: 44px;
+  margin: 0.75rem 0;
+  padding: 0.6rem 1rem;
   font: inherit;
+  background: #123552;
   color: #fff;
-  background: var(--color-primary);
-  border: 0;
-  border-radius: var(--radius);
+  border: 2px solid #123552;
+  border-radius: 0.3rem;
   cursor: pointer;
 }
-button:hover { background: #0a2f5a; }
-.status { min-height: 1.5em; margin: var(--space-unit) 0; color: var(--color-error); }
-ul { list-style: none; padding: 0; margin: calc(var(--space-unit) * 2) 0 0 0; }
-li {
-  padding: var(--space-unit) 0;
-  border-bottom: 1px solid #E5E5E5;
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible { outline: 3px solid #b16d00; outline-offset: 3px; }
+
+input[aria-invalid="true"] { border: 2px solid #a02020; }
+#evidence-error { color: #922020; }
+
+#skill-list { padding: 0; list-style: none; }
+
+#skill-list li {
   display: flex;
-  justify-content: space-between;
-  gap: var(--space-unit);
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #b8c5d0;
 }
-li time { color: #777; font-size: 14px; white-space: nowrap; }
+
+.skill-name { flex: 1 1 12rem; font-weight: 700; overflow-wrap: anywhere; }
+
+.skill-status { flex: 0 0 auto; font-size: 0.9rem; }
+.skill-status[data-state="evidenced"] { color: #1d5b32; }
+.skill-status[data-state="not-evidenced"] { color: #5a6775; }
+
+.skill-evidence { flex: 1 1 100%; margin: 0; line-height: 1.5; overflow-wrap: anywhere; }

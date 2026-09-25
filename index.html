@@ -1,26 +1,39 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Entries</title>
+  <title>Skill evidence log | MGT 3745</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
 </head>
 <body>
   <main>
-    <h1>Entries</h1>
-    <p class="lede">Replace this heading and copy with your HW3 feature. Structure lives here; presentation in styles.css; behavior and data in app.js.</p>
-
-    <form id="entry-form">
-      <label for="entry-text">New entry</label>
-      <input id="entry-text" name="text" type="text" autocomplete="off" required>
-      <button type="submit">Save</button>
+    <h1>Skill evidence log</h1>
+    <p>Pick the accounting career you are aiming at, then attach evidence to the skills it needs. Everything stays in this browser.</p>
+ 
+    <label for="path-select">Career path</label>
+    <select id="path-select" name="path"></select>
+ 
+    <h2>Skills for this path</h2>
+    <ul id="skill-list" aria-label="Skills for the selected career path"></ul>
+ 
+    <h2>Attach evidence</h2>
+    <form id="evidence-form" novalidate>
+      <label for="skill-select">Skill</label>
+      <select id="skill-select" name="skill" aria-describedby="evidence-error"></select>
+ 
+      <label for="evidence-input">What you did</label>
+      <p id="evidence-help">A class, project, or internship task that shows this skill. 1–200 characters.</p>
+      <input id="evidence-input" name="evidence" type="text" autocomplete="off"
+             aria-describedby="evidence-help evidence-error">
+ 
+      <button type="submit">Save evidence</button>
+      <p id="evidence-error" role="alert"></p>
     </form>
-
-    <p id="status" class="status" role="status" aria-live="polite"></p>
-
-    <ul id="entry-list" aria-label="Saved entries"></ul>
+ 
+    <p id="save-status" role="status" aria-live="polite"></p>
   </main>
-  <script src="app.js"></script>
 </body>
 </html>
+ 

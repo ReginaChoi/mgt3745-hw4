@@ -1,15 +1,15 @@
 # wrangler.toml
 # Tells wrangler what to deploy and what the Worker is allowed to reach.
 # Nothing in this file is secret. The database_id is an address, not a key.
-
+ 
 name = "mgt3745-hw4"
 main = "worker.js"
 compatibility_date = "2026-09-01"
-
-# The D1 binding. Your Worker sees this database as env.DB.
+ 
+# The D1 binding. The Worker sees this database as env.DB.
 [[d1_databases]]
 binding = "DB"
 database_name = "mgt3745-entries"
 # After `npx wrangler d1 create mgt3745-entries`, paste the database_id it
 # prints between the quotes below. Keep the quotes. Change nothing else.
-database_id = "PASTE_ID_HERE"
+database_id = "e8388b9f-75ad-4ca1-b9ee-4cff53d6a362"
