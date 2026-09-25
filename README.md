@@ -2,7 +2,7 @@
 
 # Skill Evidence Log
 
-[HW3 repository](https://github.com/⚠️YOUR-USERNAME/mgt3745-hw3)
+[HW3 repository](https://github.com/ReginaChoi/mgt3745-hw3)
 
 ## What
 An accounting student picks a career path (audit, forensic accounting, or government/IRS), sees the skills that path requires, and attaches evidence from coursework or an internship to a skill to mark it evidenced. Built from a 2025 accounting graduate's interview (INT-03), who had no way to track which skills she needed or show evidence of having built them. Full spec in [PROJECT.md](context/PROJECT.md) and [FEATURES.md](context/FEATURES.md).
