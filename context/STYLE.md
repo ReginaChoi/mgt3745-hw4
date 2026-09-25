@@ -35,5 +35,6 @@ Things this interface will never do, and why.
 
 ## Sources
 
-- Admired: a plain government tax-filing form page, the kind with almost no visual design at all, just clear labels and one action per screen. No screenshot on hand; described from memory of using one.
-- Resented: a job-application portal that used a spinning modal and a fake progress bar every time I saved a draft, making a two-second save feel like it was doing something dramatic. No screenshot on hand; described from memory of using one.
+- Admired: - Admired: Free File Fillable Forms, the IRS's plain-form tax tool. No navigation bar, no imagery beyond a logo, just a short numbered list of what you need to know and one button to start. ![Admired](image-7.png)
+
+- Resented: - Resented: a job-application portal (Workday-style) with a spinning modal and fake progress bar on every draft save, making a two-second save feel dramatic. No screenshot; described from memory rather than reproducing a real employer's application flow.
