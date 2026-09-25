@@ -1,8 +1,5 @@
 -- schema.sql
--- One table, because F-03 stores one kind of thing: a piece of evidence
--- attached to one skill on one career path. A second table (for example,
--- separate accounts per student) is ADR-003 territory.
-
+-- One table: a piece of evidence a student attaches to a skill within a career path.
 CREATE TABLE IF NOT EXISTS evidence (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   path_id TEXT NOT NULL,
