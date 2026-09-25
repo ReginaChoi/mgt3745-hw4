@@ -1,71 +1,57 @@
 # Entries: Data Leaves the Browser
 
-> Replace this title and every *italic prompt* with your own words. Six
-> sections, in this order: What, See It Work, How to Run, Status, Links,
-> AI Use. GitHub renders this page; it can show, not only tell.
+# Skill Evidence Log
+
+[HW3 repository](https://github.com/⚠️YOUR-USERNAME/mgt3745-hw3)
 
 ## What
+An accounting student picks a career path (audit, forensic accounting, or government/IRS), sees the skills that path requires, and attaches evidence from coursework or an internship to a skill to mark it evidenced. Built from a 2025 accounting graduate's interview (INT-03), who had no way to track which skills she needed or show evidence of having built them. Full spec in [PROJECT.md](context/PROJECT.md) and [FEATURES.md](context/FEATURES.md).
 
-*HW3 repository: [link it here](https://github.com/YOUR-USER/mgt3745-hw3)*
-
-*One paragraph naming the problem, the user, and the feature, with links to
-[PROJECT.md](context/PROJECT.md) and [FEATURES.md](context/FEATURES.md).
-One sentence on where data now lives and why (ADR-002).*
+As of HW4, evidence is stored in a Cloudflare Worker and D1 database instead of browser localStorage, so it survives a cleared cache and follows the student across devices — see [ADR-002](context/ARCHITECTURE.md).
 
 ## See It Work
-
-*A GIF or screenshot in `/docs` showing an entry surviving a cleared cache
-or appearing in a second browser. Evidence and storefront at once.*
+A screenshot/GIF in `/docs` showing evidence surviving a cleared cache.
 
 ![See it work](docs/see-it-work.gif)
 
 ```mermaid
 flowchart LR
-  A[Page loads] --> B[GET /entries]
-  B --> C[render]
-  D[User submits] --> E[POST /entries]
-  E -->|201| B
-  E -->|400| F[showError]
-  B -->|network fails| F
+A[Page loads] --> B[GET /entries]
+B --> C[render skills]
+D[Student submits evidence] --> E[POST /entries]
+E -->|201| B
+E -->|400| F[showError]
+B -->|network fails| F
 ```
 
 ## How to Run
-
-Deployed: *`https://mgt3745-hw4.YOUR-SUBDOMAIN.workers.dev/entries`*
+Deployed: `https://mgt3745-hw4.rchoi47.workers.dev/entries`
 
 From a fresh Codespace:
-
 1. Open the repository in a Codespace. The devcontainer installs xdg-utils and runs `npm install`.
-2. `npx wrangler login --device`, then follow [docs/SESSION_B_COMMANDS.md](docs/SESSION_B_COMMANDS.md)
-   to create the database, run the schema, and deploy.
-3. Paste the deployed URL into `app.js` as `API`.
+2. `npx wrangler login --device`, then follow [docs/SESSION_B_COMMANDS.md](docs/SESSION_B_COMMANDS.md) to create the database, run the schema, and deploy.
+3. Confirm the deployed URL in `app.js` as `API` (already set to `https://mgt3745-hw4.rchoi47.workers.dev`).
 4. Right-click `index.html`, choose **Open with Live Server**.
 
 To run the Worker locally instead: `npm run dev` (port 8787, local D1 emulator).
 
 ## Status
-
 | Feature | EARS statement | Verdict |
 |---|---|---|
-| *Save an entry* | *WHEN a valid entry is submitted, THE SYSTEM SHALL store it* | *PASS* |
-| *Reject empty entry* | *IF text is missing, THEN THE SYSTEM SHALL reject with a reason* | *PASS* |
-| *Survive cleared cache* | *THE SYSTEM SHALL return stored entries on any device* | *PASS* |
-| *Network down* | *IF the server is unreachable, THE SYSTEM SHALL tell the user* | *CANNOT TEST YET* |
-| *Two clients, one table* | *...* | *DEFERRED (ADR-002)* |
+| Display skills for a path | WHEN a student selects a career path, THE SYSTEM SHALL display its skills within 2 seconds | PASS |
+| Attach evidence | WHEN a student attaches evidence to a skill, THE SYSTEM SHALL update its status to "evidenced" | PASS |
+| Reject invalid submission | IF evidence is submitted with no skill selected or empty text, THEN THE SYSTEM SHALL show an error and preserve entered text | PASS |
+| Survive cleared cache | THE SYSTEM SHALL return stored evidence after a cleared cache | PASS |
+| Server unreachable | IF the server is unreachable, THE SYSTEM SHALL tell the student on the page | PASS |
+| Server returns 500 | — | CANNOT TEST YET |
+| Second student, same table | — | DEFERRED (ADR-002) |
 
-*Full verification table lives in [FEATURES.md](context/FEATURES.md).*
+Full verification table in [FEATURES.md](context/FEATURES.md).
 
 ## Links
-
-Reading order for a stranger: [PROJECT.md](context/PROJECT.md) →
-[USERS.md](context/USERS.md) → [FEATURES.md](context/FEATURES.md) →
-[ARCHITECTURE.md](context/ARCHITECTURE.md) → [STANDARDS.md](context/STANDARDS.md) →
-[TOOLS.md](context/TOOLS.md) → [STYLE.md](context/STYLE.md) →
-[CLAUDE.md](context/CLAUDE.md)
+Reading order: [PROJECT.md](context/PROJECT.md) → [USERS.md](context/USERS.md) → [FEATURES.md](context/FEATURES.md) → [ARCHITECTURE.md](context/ARCHITECTURE.md) → [STANDARDS.md](context/STANDARDS.md) → [TOOLS.md](context/TOOLS.md) → [STYLE.md](context/STYLE.md) → [CLAUDE.md](context/CLAUDE.md)
 
 ## AI Use
+Copilot wrote the first draft of the `fetch` wrapper in `app.js` (the `load`/`save` functions) and the initial `worker.js` GET/POST handlers. I checked the CORS preflight branch by intentionally removing it, watching the browser block the request, and putting it back — that's the part of the Worker I could not fully verify just by reading it, since CORS behavior only shows up at request time, not in the code itself. Copilot's first suggestion for the INSERT statement concatenated `body.evidenceText` directly into the SQL string; I caught it against STANDARDS.md rule 7 and rewrote it with `bind()` (see FAILURES.md).
 
-*Three proto-DDR questions. What did the agent write? What did you check,
-and how? What could you not fully verify, and what did you do about it?
-For the Worker specifically: name the thing you could not fully inspect.
-Hours spent: ___.*
+Hours spent: 12.*

@@ -14,7 +14,7 @@
 // Craft credit for HW4 is replacing "*" with the page's real origin once deployed.
 
 const CORS = {
-  "access-control-allow-origin": "*",
+  "access-control-allow-origin": "https://super-pancake-jrq4j6xq5ggvc5qpp-5501.app.github.dev",
   "access-control-allow-methods": "GET, POST, OPTIONS",
   "access-control-allow-headers": "content-type",
 };

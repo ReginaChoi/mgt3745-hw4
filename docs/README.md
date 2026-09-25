@@ -1,5 +1,9 @@
 # docs
 
+![See It Work 1](image.png)
+![See It Work 2](image-1.png)
+
+
 Put your See It Work GIF or screenshot here (`see-it-work.gif`), plus the two
 STYLE.md screenshots: the interface you admire and the one you resent.
 
